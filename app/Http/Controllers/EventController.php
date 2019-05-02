@@ -13,7 +13,7 @@ class EventController extends Controller
 
     public function index()
     {
-        return Schedule::all();
+        return Event::all();
     }
 
     public function create(Request $request)
@@ -27,12 +27,37 @@ class EventController extends Controller
         if ($event->save()) {
             return response()->json([
                 'success' => true
-            ]);
+            ], 201);
         } else {
             return response()->json([
                 'success' => false,
                 'message' => 'Save Item Failed'
+            ], 204);
+        }
+    }
+
+    public function getInfo($id)
+    {
+        $event = Event::find($id);
+        if ($event != null) {
+            $location = Location::find($event->location_id);
+            $ticketType = TicketType::find($event->ticket_type_id);
+            $data = [
+                'id' => $event->id,
+                'name' => $event->name,
+                'location' => $location->id,
+                'type' => $ticketType->type,
+                'price' => $ticketType->price,
+                'quota' => $ticketType->quota
+            ];
+            return response()->json([
+                'data' => $data,
+                'success' => true
             ]);
         }
+        return response()->json([
+            'success' => false,
+            'message' => "Can not find event with id = ".$id
+        ]);
     }
 }
