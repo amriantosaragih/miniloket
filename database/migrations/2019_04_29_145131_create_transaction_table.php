@@ -14,14 +14,13 @@ class CreateTransactionTable extends Migration
     public function up()
     {
         Schema::create('transaction', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('customer_id');
-            $table->string('ticket_type_id');
-            $table->string('event_id');
+            $table->string('id', 36)->primary();
+            $table->string('customer_id', 36);
+            $table->string('event_id', 36);
             $table->integer("quantity");
-            $table->foreign('customer_id')->references('id')->on('customer')->onDelete('cascade');
-            $table->foreign('ticket_type_id')->references('id')->on('ticket_type')->onDelete('cascade');
-            $table->foreign('event_id')->references('id')->on('event')->onDelete('cascade');
+            $table->double('total_price');
+            $table->foreign('customer_id')->references('id')->on('customer');
+            $table->foreign('event_id')->references('id')->on('event');
             $table->timestamps();
         });
     }

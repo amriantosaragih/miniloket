@@ -14,8 +14,8 @@ class CreateTicketTypeTable extends Migration
     public function up()
     {
         Schema::create('ticket_type', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('type');
+            $table->string('id', 36)->primary();
+            $table->string('type', 100);
             $table->double('price');
             $table->integer('quota');
             $table->timestamps();
