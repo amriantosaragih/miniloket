@@ -41,3 +41,20 @@ composer require laravel/framework
 version `7.2.17`
 
 for download and install xampp, i recommand you to use this [link](https://www.apachefriends.org/xampp-files/7.2.17/xampp-windows-x64-7.2.17-0-VC15-installer.exe)
+
+
+### How to Run the Project
+
+To run this project, you can use this command in terminal.
+
+```
+php artisan serve
+```
+
+### How to Run the test
+
+To run the test, you can use this command in terminal.
+
+```
+vendor/bin/phpunit
+```
