@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/event/create', 'EventController@create');
+Route::post('/location/create', 'LocationController@create');
