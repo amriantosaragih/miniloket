@@ -8,5 +8,5 @@ class Event extends Model
 {
     protected $table = 'event';
     public $incrementing = false;
-    protected $fillable = ['id', 'name', 'ticket_type_id', 'location_id'];
+    protected $fillable = ['id', 'name', 'ticket_type_id', 'schedule_id', 'location_id'];
 }

@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/', 'EventController@index');
+Route::post('/schedule/create', 'ScheduleController@create');
 Route::post('/event/create', 'EventController@create');
 Route::post('/location/create', 'LocationController@create');
 Route::post('/event/ticket/create', 'TicketTypeController@create');

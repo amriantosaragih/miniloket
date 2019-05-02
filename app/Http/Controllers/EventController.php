@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Event;
 use App\Location;
 use App\TicketType;
+use App\Schedule;
 
 class EventController extends Controller
 {
@@ -23,6 +24,7 @@ class EventController extends Controller
         $event->name = $request->input('name');
         $event->ticket_type_id = $request->input('ticket_type_id');
         $event->location_id = $request->input('location_id');
+        $event->schedule_id = $request->input('schedule_id');
 
         if ($event->save()) {
             return response()->json([
@@ -42,10 +44,15 @@ class EventController extends Controller
         if ($event != null) {
             $location = Location::find($event->location_id);
             $ticketType = TicketType::find($event->ticket_type_id);
+            $schedule = Schedule::find($event->schedule_id);
             $data = [
                 'id' => $event->id,
                 'name' => $event->name,
                 'location' => $location->id,
+                'start_time' => $schedule->time_start,
+                'end_time' => $schedule->time_end,
+                'start_date' => $schedule->start_date,
+                'end_date' => $schedule->end_date,
                 'type' => $ticketType->type,
                 'price' => $ticketType->price,
                 'quota' => $ticketType->quota
